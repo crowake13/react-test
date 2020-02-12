@@ -1,8 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import withRenderLog from '../components/shared/withRenderLog';
+import * as RENDER_LOG from '../constants/render-log';
 
-export const PostPage = () => {
+const PostPage = () => {
   let { id } = useParams();
 
   return <div>post id: {id}</div>;
 };
+
+export default withRenderLog({ greeting: RENDER_LOG.GREETING })(PostPage);

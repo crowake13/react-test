@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import * as ROUTES from './constants/routes';
-import { LoginPage } from './pages/LoginPage';
-import { PostPage } from './pages/PostPage';
-import { PostsPage } from './pages/PostsPage';
+import LoginPage from './pages/LoginPage';
+import PostPage from './pages/PostPage';
+import PostsPage from './pages/PostsPage';
 
 const App = () => {
   return (

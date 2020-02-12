@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import Header from './components/layout/Header';
+import { PrivateRoute } from './components/routes/PrivateRoute';
 import * as ROUTES from './constants/routes';
 import LoginPage from './pages/LoginPage';
 import PostPage from './pages/PostPage';
@@ -10,13 +12,20 @@ const App = () => {
   return (
     <Router>
       <div>
-        <header></header>
+        <Header />
         <div>
-          <Route exact path={ROUTES.LANDING} component={LoginPage} />
-          <Route path={ROUTES.APP} component={PostsPage} />
-          <Route path={ROUTES.POST} component={PostPage} />
+          <Route exact path={ROUTES.LANDING}>
+            <LoginPage />
+          </Route>
+
+          <PrivateRoute path={ROUTES.APP}>
+            <PostsPage />
+          </PrivateRoute>
+
+          <PrivateRoute path={ROUTES.POST}>
+            <PostPage />
+          </PrivateRoute>
         </div>
-        <footer></footer>
       </div>
     </Router>
   );

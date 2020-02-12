@@ -44,4 +44,6 @@ LoginPage.defaultProps = {
   }
 };
 
-export default withRenderLog({ greeting: RENDER_LOG.GREETING })(LoginPage);
+export default process.env.NODE_ENV === 'production'
+  ? LoginPage
+  : withRenderLog({ greeting: RENDER_LOG.GREETING })(LoginPage);

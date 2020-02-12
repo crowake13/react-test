@@ -9,4 +9,6 @@ const PostPage = () => {
   return <div>post id: {id}</div>;
 };
 
-export default withRenderLog({ greeting: RENDER_LOG.GREETING })(PostPage);
+export default process.env.NODE_ENV === 'production'
+  ? PostPage
+  : withRenderLog({ greeting: RENDER_LOG.GREETING })(PostPage);

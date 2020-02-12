@@ -15,4 +15,6 @@ const Header = () => {
   );
 };
 
-export default withRenderLog({ greeting: RENDER_LOG.GREETING })(Header);
+export default process.env.NODE_ENV === 'production'
+  ? Header
+  : withRenderLog({ greeting: RENDER_LOG.GREETING })(Header);

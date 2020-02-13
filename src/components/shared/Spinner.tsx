@@ -4,6 +4,4 @@ import withRenderLog from './withRenderLog';
 
 const Spinner = () => <div>spinner</div>;
 
-export default process.env.NODE_ENV === 'production'
-  ? Spinner
-  : withRenderLog({ greeting: RENDER_LOG.GREETING })(Spinner);
+export default withRenderLog({ greeting: RENDER_LOG.GREETING })(Spinner);

@@ -5,10 +5,10 @@ interface IWithRenderLogProps {
 }
 
 const withRenderLog = ({ greeting }: IWithRenderLogProps) => (
-  WrappedComponent: React.FC
+  WrappedComponent: any
 ) => {
   const WithDataFetching: React.FC<{
-    [key: string]: string;
+    [key: string]: any;
   }> = ({ renderLogMessage, ...rest }) => {
     useEffect(() => {
       console.log(
@@ -21,7 +21,9 @@ const withRenderLog = ({ greeting }: IWithRenderLogProps) => (
 
   WithDataFetching.displayName = `WithDataFetching(${WrappedComponent.name})`;
 
-  return WithDataFetching;
+  return process.env.NODE_ENV === 'production'
+    ? WrappedComponent
+    : WithDataFetching;
 };
 
 export default withRenderLog;

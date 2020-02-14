@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Header from './components/layout/Header';
+import { NoMatch } from './components/routes/NoMatch';
 import { PrivateRoute } from './components/routes/PrivateRoute';
 import * as ROUTES from './constants/routes';
 import LoginPage from './pages/LoginPage';
@@ -11,22 +12,31 @@ import PostsPage from './pages/PostsPage';
 const App = () => {
   return (
     <Router>
-      <div>
-        <Header />
-        <div>
-          <Route exact path={ROUTES.LANDING}>
-            <LoginPage />
-          </Route>
+      <Switch>
+        <Route exact path={ROUTES.LANDING}>
+          <LoginPage />
+        </Route>
 
-          <PrivateRoute path={ROUTES.APP}>
-            <PostsPage />
-          </PrivateRoute>
+        <PrivateRoute path={ROUTES.LANDING}>
+          <div id="body">
+            <Switch>
+              <Route path={ROUTES.APP}>
+                <PostsPage />
+              </Route>
 
-          <PrivateRoute path={ROUTES.POST}>
-            <PostPage />
-          </PrivateRoute>
-        </div>
-      </div>
+              <Route path={ROUTES.POST}>
+                <PostPage />
+              </Route>
+
+              <Route path="*">
+                <NoMatch />
+              </Route>
+            </Switch>
+          </div>
+
+          <Header />
+        </PrivateRoute>
+      </Switch>
     </Router>
   );
 };

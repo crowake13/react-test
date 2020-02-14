@@ -26,9 +26,12 @@ const LoginPage = ({ getDefaultFrom }: { [key: string]: any }) => {
   }, [authService]);
 
   return (
-    <div>
-      <button onClick={() => onSubmit({ email: 'blabla', password: 'asdf' })}>
-        LOGIN
+    <div className="d-flex justify-content-center mt-5">
+      <button
+        className="btn btn-primary"
+        onClick={() => onSubmit({ email: 'blabla', password: 'asdf' })}
+      >
+        Login
       </button>
     </div>
   );

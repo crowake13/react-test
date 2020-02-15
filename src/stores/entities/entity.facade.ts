@@ -18,6 +18,7 @@ export interface IEntityFacade<T extends IEntity<K>, K extends any = ID> {
   isFetchingBySlug(slug: string): boolean;
   isFetching: { [key: string]: boolean };
   isFetching$: Observable<{ [key: string]: boolean }>;
+  fetch(slug: string, set: boolean): Promise<void>;
 }
 
 export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
@@ -66,7 +67,8 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
   readonly active$ = combineLatest(this._entitie$, this._active$).pipe(
     map(([hashMap, active]) => {
       return active ? hashMap.get(`${active}`) ?? null : null;
-    })
+    }),
+    distinctUntilChanged()
   );
 
   constructor(protected authHeader: { [key: string]: string } = {}) {
@@ -115,16 +117,12 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
     }
   }
 
-  protected async fetch(slug: string, set: boolean = false) {
+  async fetch(slug: string, set: boolean = false) {
     if (!this.isFetchingBySlug(slug)) {
       this._isFetching$.next({
         ...this.isFetching,
         [slug]: true
       });
-
-      await ((ms: number) => {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      })(3000);
 
       try {
         const response: T[] | T = await fetch(

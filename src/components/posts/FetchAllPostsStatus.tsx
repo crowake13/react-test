@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import * as RENDER_LOG from '../../constants/render-log';
-import { usePostsFetch } from '../../hooks/posts/posts-fetch.hook';
+import { useFetch } from '../../hooks/fetch.hook';
 import { PostsContext } from '../../stores/posts/posts.context';
 import withRenderLog from '../shared/withRenderLog';
 
 const FetchAllPostsStatus = () => {
-  const postsService = useContext(PostsContext);
-  const [isFetchingAll, hasEncounteredError] = usePostsFetch('posts');
+  const [isFetchingAll, hasEncounteredError, fetchAll] = useFetch(
+    useContext(PostsContext),
+    'posts'
+  );
 
   return (
     <div>
@@ -25,11 +27,7 @@ const FetchAllPostsStatus = () => {
         </div>
       ) : (
         <div className="d-flex justify-content-end">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={postsService.fetchAll.bind(postsService)}
-          >
+          <button type="button" className="btn btn-primary" onClick={fetchAll}>
             Refresh
           </button>
         </div>

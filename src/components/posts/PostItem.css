@@ -1,0 +1,32 @@
+.card {
+  min-width: 18rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-body {
+  margin-bottom: 50px;
+}
+
+.card-title a:hover {
+  text-decoration: none;
+}
+
+.bg-light {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 72px);
+  top: calc(100% - 49px);
+  -webkit-transition: top 0.3s ease;
+  transition: top 0.3s ease;
+}
+
+.bg-light .card-body {
+  overflow-y: auto;
+  position: relative;
+  height: calc(100% - 50px);
+}
+
+.full-card-height {
+  top: 72px;
+}

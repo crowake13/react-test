@@ -1,4 +1,16 @@
+import { keys } from 'ts-transformer-keys';
 import { ID } from '../entities/entity.facade';
+
+function strEnum<T extends string>(o: Array<T>): { [K in T]: K } {
+  return o.reduce((res, key) => {
+    res[key] = key;
+    return res;
+  }, Object.create(null));
+}
+
+const UserProps = strEnum(keys<User>());
+/** Create a Type */
+export type UserProps = keyof typeof UserProps;
 
 export interface User {
   id: ID;

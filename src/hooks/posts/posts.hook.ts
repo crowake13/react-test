@@ -28,7 +28,7 @@ export function usePosts(): PostsHookTuple {
         }
 
         const userIds = usersService
-          .getFilteredUsers(users, searchTerm)
+          .getFilteredUsers(users, searchTerm, ['name'])
           .map(user => user.id);
 
         return posts.filter(post => {

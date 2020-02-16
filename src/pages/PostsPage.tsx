@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import FetchAllPostsStatus from '../components/posts/FetchAllPostsStatus';
 import PostList from '../components/posts/PostList';
+import PostsSearchTerm from '../components/posts/PostsSearchTerm';
 import withRenderLog from '../components/shared/withRenderLog';
 import * as RENDER_LOG from '../constants/render-log';
 import { CommentsContext } from '../stores/comments/comments.context';
@@ -26,8 +27,11 @@ const PostsPage = () => {
 
   return (
     <div className="mb-3">
-      <div className="pt-3">
-        <div className="mx-3 mb-3">
+      <div className="d-flex justify-content-between pt-3">
+        <div className="w-50 mx-3">
+          <PostsSearchTerm />
+        </div>
+        <div className="w-50 mx-3">
           <FetchAllPostsStatus />
         </div>
       </div>

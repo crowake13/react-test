@@ -3,7 +3,6 @@ import * as RENDER_LOG from '../../constants/render-log';
 import { context } from '../../stores/users/post-user.context';
 import { UsersContext } from '../../stores/users/users.context';
 import withRenderLog from '../shared/withRenderLog';
-import UserLabel from './UserLabel';
 
 const PostUserConsumer = ({ userId, loadingUserLabel, noUserLabel }: any) => {
   const postUserContext = useContext(context);
@@ -16,14 +15,12 @@ const PostUserConsumer = ({ userId, loadingUserLabel, noUserLabel }: any) => {
   }, [postUserContext, userId, userService]);
 
   return !postUserContext ? null : (
-    <UserLabel
-      label={
-        postUserContext.user?.name ??
+    <h6 className="card-subtitle mb-2 text-muted">
+      {postUserContext.user?.name ??
         (postUserContext.isFetching
           ? loadingUserLabel
-          : postUserContext.user?.name ?? noUserLabel)
-      }
-    />
+          : postUserContext.user?.name ?? noUserLabel)}
+    </h6>
   );
 };
 

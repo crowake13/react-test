@@ -5,10 +5,14 @@ import { PostsContext } from '../../stores/posts/posts.context';
 import withRenderLog from '../shared/withRenderLog';
 
 const FetchAllPostsStatus = () => {
-  const [isFetchingAll, hasEncounteredError, fetchAll] = useFetch(
+  const [isFetchingAll, hasEncounteredError, fetchPosts] = useFetch(
     useContext(PostsContext),
     'posts'
   );
+
+  const fetchAllPosts = () => {
+    fetchPosts(true);
+  };
 
   return (
     <div>
@@ -27,7 +31,11 @@ const FetchAllPostsStatus = () => {
         </div>
       ) : (
         <div className="d-flex justify-content-end">
-          <button type="button" className="btn btn-primary" onClick={fetchAll}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={fetchAllPosts}
+          >
             Refresh
           </button>
         </div>

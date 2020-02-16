@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import FetchAllPostsStatus from '../components/posts/FetchAllPostsStatus';
 import PostList from '../components/posts/PostList';
 import PostsSearchTerm from '../components/posts/PostsSearchTerm';
+import FetchAllStatus from '../components/shared/FetchAllStatus';
 import withRenderLog from '../components/shared/withRenderLog';
 import * as RENDER_LOG from '../constants/render-log';
 import { CommentsContext } from '../stores/comments/comments.context';
@@ -32,7 +32,7 @@ const PostsPage = () => {
           <PostsSearchTerm />
         </div>
         <div className="w-50 mx-3">
-          <FetchAllPostsStatus />
+          <FetchAllStatus />
         </div>
       </div>
       <PostList />

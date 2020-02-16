@@ -1,9 +1,11 @@
 import React from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
+import * as RENDER_LOG from '../../constants/render-log';
 import * as ROUTES from '../../constants/routes';
 import { useAuth } from '../../hooks/auth.hook';
+import withRenderLog from '../shared/withRenderLog';
 
-export const PrivateRoute = ({ children, ...rest }: RouteProps) => {
+const PrivateRoute = ({ children, ...rest }: RouteProps) => {
   const [isAuthenticating, isAuthenticated] = useAuth();
 
   return (
@@ -33,3 +35,5 @@ export const PrivateRoute = ({ children, ...rest }: RouteProps) => {
     />
   );
 };
+
+export default withRenderLog({ greeting: RENDER_LOG.GREETING })(PrivateRoute);

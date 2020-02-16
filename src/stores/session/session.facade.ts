@@ -44,7 +44,9 @@ export class SessionFacade implements ISessionFacade {
     email,
     password
   }: ICredentials): Promise<string | null> {
-    await this._timeout(2500);
+    await ((ms: number) => new Promise(resolve => setTimeout(resolve, ms)))(
+      1500
+    );
     return email === process.env.REACT_APP_VALID_EMAIL &&
       password === process.env.REACT_APP_VALID_PASSWORD
       ? process.env.REACT_APP_ACCESS_TOKEN ?? null
@@ -55,10 +57,6 @@ export class SessionFacade implements ISessionFacade {
     this._isAuthenticating$.next(true);
     this._accessToken$.next(await this._token(creds));
     this._isAuthenticating$.next(false);
-  }
-
-  private _timeout(ms: number): Promise<void> {
-    return new Promise<void>(resolve => setTimeout(resolve, ms));
   }
 
   logout(): void {

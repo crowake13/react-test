@@ -7,7 +7,7 @@ export interface IUsersFacade extends IEntityFacade<User> {
 
 export class UsersFacade extends EntityFacade<User> implements IUsersFacade {
   async fetchAll() {
-    await this.fetch('users', true);
+    await this.fetch('users', true, 3000);
   }
 }
 

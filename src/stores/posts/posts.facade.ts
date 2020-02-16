@@ -7,7 +7,7 @@ export interface IPostsFacade extends IEntityFacade<Post> {
 
 export class PostsFacade extends EntityFacade<Post> implements IPostsFacade {
   async fetchAll() {
-    await this.fetch('posts', true);
+    await this.fetch('posts', true, 1500);
   }
 }
 

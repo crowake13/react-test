@@ -7,7 +7,7 @@ export interface ICommentsFacade extends IEntityFacade<Comment> {
 
 export class CommentsFacade extends EntityFacade<Comment> {
   async fetchAll() {
-    await this.fetch('comments', true);
+    await this.fetch('comments', true, 4500);
   }
 }
 

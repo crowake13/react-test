@@ -1,7 +1,11 @@
 import { useObservable } from '@mindspace-io/utils';
 import { ID, IEntity, IEntityFacade } from '../stores/entities/entity.facade';
 
-export type FetchPostsHookTuple = [boolean, boolean, () => Promise<void>];
+export type FetchHookTuple = [
+  boolean,
+  boolean,
+  (set?: boolean, delay?: number) => Promise<void>
+];
 
 /**
  * Custom Hook to manage a view Model for Post view components
@@ -9,12 +13,12 @@ export type FetchPostsHookTuple = [boolean, boolean, () => Promise<void>];
 export function useFetch<T extends IEntity<ID>>(
   service: IEntityFacade<T>,
   slug: string
-): FetchPostsHookTuple {
+): FetchHookTuple {
   const [isFetching] = useObservable(service.isFetching$, service.isFetching);
 
   return [
     isFetching[slug],
     service.errors[slug],
-    () => service.fetch(slug, true)
+    (set: boolean = false, delay: number = 0) => service.fetch(slug, set, delay)
   ];
 }

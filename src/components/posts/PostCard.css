@@ -12,7 +12,7 @@
   text-decoration: none;
 }
 
-.bg-light {
+.card-deck .bg-light {
   position: absolute;
   width: 100%;
   height: calc(100% - 72px);
@@ -21,12 +21,12 @@
   transition: top 0.3s ease;
 }
 
-.bg-light .card-body {
+.card-deck .bg-light .card-body {
   overflow-y: auto;
   position: relative;
   height: calc(100% - 50px);
 }
 
-.full-card-height {
+.card-deck .full-card-height {
   top: 72px;
 }

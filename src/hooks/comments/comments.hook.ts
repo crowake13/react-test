@@ -9,7 +9,7 @@ export type CommentsHookTuple = [Comment[], (postId: ID) => Comment[] | null];
 /**
  * Custom Hook to manage a view Model for Comment view components
  */
-export function useComments(): CommentsHookTuple {
+export const useComments = (): CommentsHookTuple => {
   const commentsService = useContext(CommentsContext);
 
   const [comments] = useObservable(commentsService.entitie$, []);
@@ -26,4 +26,4 @@ export function useComments(): CommentsHookTuple {
   });
 
   return [comments, (postId: ID) => mapOfPostComments.get(`${postId}`) ?? null];
-}
+};

@@ -10,10 +10,10 @@ export type FetchHookTuple = [
 /**
  * Custom Hook to manage a view Model for Post view components
  */
-export function useFetch<T extends IEntity<ID>>(
+export const useFetch = <T extends IEntity<ID>>(
   service: IEntityFacade<T>,
   slug: string
-): FetchHookTuple {
+): FetchHookTuple => {
   const [isFetching] = useObservable(service.isFetching$, service.isFetching);
 
   return [
@@ -21,4 +21,4 @@ export function useFetch<T extends IEntity<ID>>(
     service.errors[slug],
     (set: boolean = false, delay: number = 0) => service.fetch(slug, set, delay)
   ];
-}
+};

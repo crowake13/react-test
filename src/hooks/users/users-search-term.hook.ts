@@ -7,7 +7,7 @@ export type UsersSearchTermHookDuple = [string, (text: string) => void];
 /**
  * Custom Hook to manage a view Model for User view components
  */
-export function useUsersSearchTerm(): UsersSearchTermHookDuple {
+export const useUsersSearchTerm = (): UsersSearchTermHookDuple => {
   const usersService = useContext(UsersContext);
 
   const [searchTerm] = useObservable(
@@ -16,4 +16,4 @@ export function useUsersSearchTerm(): UsersSearchTermHookDuple {
   );
 
   return [searchTerm, usersService.updateSearchTerm.bind(usersService)];
-}
+};

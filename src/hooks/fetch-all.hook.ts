@@ -11,7 +11,7 @@ export type FetchHookDuple = [boolean, () => void];
 /**
  * Custom Hook to manage a view Model for Post view components
  */
-export function useFetchAll(): FetchHookDuple {
+export const useFetchAll = (): FetchHookDuple => {
   const postsService = useContext(PostsContext);
   const usersService = useContext(UsersContext);
   const commentsService = useContext(CommentsContext);
@@ -38,4 +38,4 @@ export function useFetchAll(): FetchHookDuple {
       commentsService.fetchAll();
     }
   ];
-}
+};

@@ -12,7 +12,7 @@ export type PostsHookTuple = [Post[], (id: ID) => void];
 /**
  * Custom Hook to manage a view Model for Post view components
  */
-export function usePosts(): PostsHookTuple {
+export const usePosts = (): PostsHookTuple => {
   const postsService = useContext(PostsContext);
   const usersService = useContext(UsersContext);
 
@@ -40,4 +40,4 @@ export function usePosts(): PostsHookTuple {
   );
 
   return [posts, postsService.activate.bind(postsService)];
-}
+};

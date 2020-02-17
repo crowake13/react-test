@@ -4,7 +4,6 @@ import * as RENDER_LOG from '../../constants/render-log';
 import * as ROUTES from '../../constants/routes';
 import { useAuth } from '../../hooks/auth.hook';
 import withRenderLog from '../shared/withRenderLog';
-import './Header.css';
 
 const Header = () => {
   const [, isAuthenticated] = useAuth();

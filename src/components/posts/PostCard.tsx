@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import * as RENDER_LOG from '../../constants/render-log';
 import { Post } from '../../stores/posts/post.model';
 import withRenderLog from '../shared/withRenderLog';
-import './PostCard.css';
 
 interface PostCardProps {
   post: Post;

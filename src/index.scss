@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+// change theme primary color
+$theme-colors: (
+  'primary': #ef4059
+);
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+#body {
+  margin-top: 57px;
+  position: relative;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 99;
+}
+
+.card {
+  min-width: 18rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-body {
+  margin-bottom: 50px;
+}
+
+.card-title a:hover {
+  text-decoration: none;
+}
+
+.card-deck {
+  .bg-light {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 72px);
+    top: calc(100% - 49px);
+    -webkit-transition: top 0.3s ease;
+    transition: top 0.3s ease;
+  }
+
+  .bg-light .card-body {
+    overflow-y: auto;
+    position: relative;
+    height: calc(100% - 50px);
+  }
+
+  .full-card-height {
+    top: 72px;
+  }
+}

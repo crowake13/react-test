@@ -1,15 +1,19 @@
 import { useObservable } from '@mindspace-io/utils';
-import { createContext, useContext } from 'react';
-import { facade, ISessionFacade } from '../stores/session/session.facade';
+import { useContext } from 'react';
+import { SessionContext } from '../stores/session/session.context';
+import { ICredentials } from '../stores/session/session.facade';
 
-export const SessionContext = createContext<ISessionFacade>(facade);
-
-export type SessionHookTuple = [boolean, boolean, ISessionFacade];
+export type SessionHookQuadruple = [
+  boolean,
+  boolean,
+  (creds: ICredentials) => Promise<void>,
+  () => void
+];
 
 /**
  * Custom Hook to manage a view Model for Session view components
  */
-export const useAuth = (): SessionHookTuple => {
+export const useAuth = (): SessionHookQuadruple => {
   const sessionService = useContext(SessionContext);
 
   const [isAuthenticating] = useObservable(
@@ -22,5 +26,10 @@ export const useAuth = (): SessionHookTuple => {
     sessionService.isCurrentlyAuthenticated
   );
 
-  return [isAuthenticating, isAuthenticated, sessionService];
+  return [
+    isAuthenticating,
+    isAuthenticated,
+    sessionService.login.bind(sessionService),
+    sessionService.logout.bind(sessionService)
+  ];
 };

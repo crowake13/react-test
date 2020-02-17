@@ -11,19 +11,19 @@ interface IFrom {
 }
 
 const LoginPage = ({ getDefaultFrom }: { [key: string]: any }) => {
-  const [, , authService] = useAuth();
+  const [, , login, logout] = useAuth();
   const history = useHistory();
   const location = useLocation();
   const from = getDefaultFrom(location.state);
 
   const onSubmit = async (creds: ICredentials) => {
     history.push(from);
-    await authService.login(creds);
+    await login(creds);
   };
 
   useEffect(() => {
-    authService.logout();
-  }, [authService]);
+    logout();
+  }, []);
 
   return (
     <div className="d-flex justify-content-center mt-5">

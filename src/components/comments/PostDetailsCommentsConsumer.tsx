@@ -22,7 +22,7 @@ const PostDetailsCommentsConsumer = ({
                 <span>Comments ({context.comments.length})</span>
               )}
             </div>
-            <CommentList comments={context.comments} />
+            <CommentList comments={context.comments ?? []} />
           </div>
         )
       }

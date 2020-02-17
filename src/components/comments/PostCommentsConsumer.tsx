@@ -73,7 +73,7 @@ const PostCommentsConsumer = ({
               )}
             </div>
             {context.areCommentsVisible ? (
-              <CommentList comments={context.comments} />
+              <CommentList comments={context.comments ?? []} />
             ) : null}
           </div>
         )

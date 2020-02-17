@@ -23,6 +23,7 @@ const LoginPage = ({ getDefaultFrom }: { [key: string]: any }) => {
 
   useEffect(() => {
     logout();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

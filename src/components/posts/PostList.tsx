@@ -26,7 +26,7 @@ const PostList = () => {
               <PostCommentsConsumer
                 noCommentsLabel="There are no comments"
                 loadingCommentsLabel="Comments are loading..."
-              ></PostCommentsConsumer>
+              />
             </PostCommentsProvider>
           </PostCard>
         ))}

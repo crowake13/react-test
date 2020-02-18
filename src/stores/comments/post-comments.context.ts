@@ -1,10 +1,14 @@
 import { createContext } from 'react';
 import { Comment } from './comment.model';
 
-const context = createContext<{
+const PostCommentsContext = createContext<{
   comments: Comment[] | null;
   areCommentsVisible: boolean;
   toggleCommentsVisibility: (newValue: boolean) => void;
-} | null>(null);
+}>({
+  comments: null,
+  areCommentsVisible: false,
+  toggleCommentsVisibility: newValue => console.log(newValue)
+});
 
-export const { Provider, Consumer } = context;
+export default PostCommentsContext;

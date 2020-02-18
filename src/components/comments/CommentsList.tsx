@@ -6,7 +6,7 @@ import withRenderLog from '../shared/withRenderLog';
 export const CommentList = ({ comments }: { comments: Comment[] }) => {
   return (
     <div className="card-body m-0">
-      {(comments ?? []).map((comment, index) => (
+      {comments.map((comment, index) => (
         <div key={comment.id} className={!index ? 'mb-2' : 'border-top mb-2'}>
           <h6 className="card-subtitle my-2 text-muted">{comment.email}</h6>
           <h5 className="card-title">{comment.name}</h5>

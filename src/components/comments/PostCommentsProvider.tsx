@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as RENDER_LOG from '../../constants/render-log';
 import { useComments } from '../../hooks/comments/comments.hook';
-import { Provider } from '../../stores/comments/post-comments.context';
+import PostCommentsContext from '../../stores/comments/post-comments.context';
 import withRenderLog from '../shared/withRenderLog';
 
 const PostCommentsProvider = ({ postId, children }: any) => {
@@ -10,7 +10,7 @@ const PostCommentsProvider = ({ postId, children }: any) => {
   const [, getCommentsByPostId] = useComments();
 
   return (
-    <Provider
+    <PostCommentsContext.Provider
       value={{
         comments: getCommentsByPostId(postId),
         areCommentsVisible: areCommentsVisible,
@@ -18,7 +18,7 @@ const PostCommentsProvider = ({ postId, children }: any) => {
       }}
     >
       {children}
-    </Provider>
+    </PostCommentsContext.Provider>
   );
 };
 

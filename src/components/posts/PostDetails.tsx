@@ -15,7 +15,7 @@ const PostDetails = () => {
   return (
     <div className="p-3">
       {post ? (
-        <PostCard post={post}>
+        <PostCard {...post}>
           <PostUserProvider id={post.userId} slug={`users/${post.userId}`}>
             <PostUserConsumer
               userId={post.userId}

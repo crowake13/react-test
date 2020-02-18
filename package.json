@@ -47,6 +47,9 @@
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.1.0"
   },
+  "resolutions": {
+    "react-dev-utils": "10.1.0"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

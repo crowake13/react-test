@@ -15,7 +15,7 @@ const PostList = () => {
     <div className="px-3">
       <div className="card-deck">
         {posts.map(post => (
-          <PostCard key={post.id} post={post}>
+          <PostCard key={post.id} {...post}>
             <PostUserProvider id={post.userId} slug="users">
               <PostUserConsumer
                 loadingUserLabel="Author is loading..."

@@ -4,12 +4,11 @@ import * as RENDER_LOG from '../../constants/render-log';
 import { Post } from '../../stores/posts/post.model';
 import withRenderLog from '../shared/withRenderLog';
 
-interface PostCardProps {
-  post: Post;
+interface PostCardProps extends Post {
   children?: any;
 }
 
-const PostCard = ({ post, children }: PostCardProps) => {
+const PostCard = ({ id, title, body, children }: PostCardProps) => {
   const { pathname } = useLocation();
 
   return (
@@ -17,13 +16,13 @@ const PostCard = ({ post, children }: PostCardProps) => {
       <div className="card-body">
         {children[0]}
         <h5 className="card-title">
-          {pathname !== `/post/${post.id}` ? (
-            <Link to={`/post/${post.id}`}>{post.title}</Link>
+          {pathname !== `/post/${id}` ? (
+            <Link to={`/post/${id}`}>{title}</Link>
           ) : (
-            post.title
+            title
           )}
         </h5>
-        <p className="card-text">{post.body}</p>
+        <p className="card-text">{body}</p>
       </div>
       {children[1]}
     </div>

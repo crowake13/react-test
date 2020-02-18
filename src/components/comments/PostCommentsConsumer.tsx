@@ -30,7 +30,7 @@ const PostCommentsConsumer = ({
                     className="close float-right"
                     aria-label="Close"
                     onClick={() =>
-                      context.toggleCommentsVisability(
+                      context.toggleCommentsVisibility(
                         !context.areCommentsVisible
                       )
                     }

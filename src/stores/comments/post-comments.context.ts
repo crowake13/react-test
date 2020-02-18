@@ -4,7 +4,7 @@ import { Comment } from './comment.model';
 const context = createContext<{
   comments: Comment[] | null;
   areCommentsVisible: boolean;
-  toggleCommentsVisability: (newValue: boolean) => void;
+  toggleCommentsVisibility: (newValue: boolean) => void;
 } | null>(null);
 
 export const { Provider, Consumer } = context;

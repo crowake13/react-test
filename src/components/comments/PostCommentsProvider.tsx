@@ -5,7 +5,7 @@ import { Provider } from '../../stores/comments/post-comments.context';
 import withRenderLog from '../shared/withRenderLog';
 
 const PostCommentsProvider = ({ postId, children }: any) => {
-  const [areCommentsVisible, toggleCommentsVisability] = useState(false);
+  const [areCommentsVisible, toggleCommentsVisibility] = useState(false);
 
   const [, getCommentsByPostId] = useComments();
 
@@ -14,7 +14,7 @@ const PostCommentsProvider = ({ postId, children }: any) => {
       value={{
         comments: getCommentsByPostId(postId),
         areCommentsVisible: areCommentsVisible,
-        toggleCommentsVisability: toggleCommentsVisability
+        toggleCommentsVisibility: toggleCommentsVisibility
       }}
     >
       {children}

@@ -1,7 +1,10 @@
-import { useObservable } from '@mindspace-io/utils';
 import { useContext } from 'react';
-import { SessionContext } from '../stores/session/session.context';
-import { ICredentials } from '../stores/session/session.facade';
+import { AuthContext, AUTH_ACTIONS } from '../stores/session/session.provider';
+
+export interface ICredentials {
+  email: string;
+  password: string;
+}
 
 export type SessionHookQuadruple = [
   boolean,
@@ -10,26 +13,33 @@ export type SessionHookQuadruple = [
   () => void
 ];
 
-/**
- * Custom Hook to manage a view Model for Session view components
- */
 export const useAuth = (): SessionHookQuadruple => {
-  const sessionService = useContext(SessionContext);
-
-  const [isAuthenticating] = useObservable(
-    sessionService.isAuthenticating$,
-    sessionService.isCurrentlyAuthenticating
+  const [{ isAuthenticating, isAuthenticated }, dispatch] = useContext(
+    AuthContext
   );
 
-  const [isAuthenticated] = useObservable(
-    sessionService.isAuthenticated$,
-    sessionService.isCurrentlyAuthenticated
-  );
+  const _token = async ({
+    email,
+    password
+  }: ICredentials): Promise<string | null> => {
+    await ((ms: number) => new Promise(resolve => setTimeout(resolve, ms)))(
+      1500
+    );
 
-  return [
-    isAuthenticating,
-    isAuthenticated,
-    sessionService.login.bind(sessionService),
-    sessionService.logout.bind(sessionService)
-  ];
+    return email === process.env.REACT_APP_VALID_EMAIL &&
+      password === process.env.REACT_APP_VALID_PASSWORD
+      ? process.env.REACT_APP_ACCESS_TOKEN ?? null
+      : null;
+  };
+
+  const login = async (creds: ICredentials) => {
+    dispatch({ type: AUTH_ACTIONS.START_AUTH });
+    dispatch({ type: AUTH_ACTIONS.END_AUTH, payload: await _token(creds) });
+  };
+
+  const logout = () => {
+    dispatch({ type: AUTH_ACTIONS.LOGOUT });
+  };
+
+  return [isAuthenticating, isAuthenticated, login, logout];
 };

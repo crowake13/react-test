@@ -4,8 +4,7 @@ import { LoginFrom } from '../components/auth/LoginForm';
 import withRenderLog from '../components/shared/withRenderLog';
 import * as RENDER_LOG from '../constants/render-log';
 import * as ROUTES from '../constants/routes';
-import { useAuth } from '../hooks/auth.hook';
-import { ICredentials } from '../stores/session/session.facade';
+import { ICredentials, useAuth } from '../hooks/auth.hook';
 
 interface IFrom {
   pathname: string;

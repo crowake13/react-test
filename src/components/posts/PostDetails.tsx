@@ -3,11 +3,11 @@ import * as RENDER_LOG from '../../constants/render-log';
 import { useActive } from '../../hooks/active.hook';
 import { PostsContext } from '../../stores/posts/posts.context';
 import PostCommentsProvider from '../comments/PostCommentsProvider';
-import PostDetailsCommentsConsumer from '../comments/PostDetailsCommentsConsumer';
 import withRenderLog from '../shared/withRenderLog';
-import PostUserConsumer from '../users/PostUserConsumer';
-import PostUserProvider from '../users/PostUserProvider';
+import UserProvider from '../users/UserProvider';
 import PostCard from './PostCard';
+import PostDetailsCommentsConsumer from './PostCard/PostDetailsCommentsConsumer';
+import PostUserConsumer from './PostCard/PostUserConsumer';
 
 const PostDetails = () => {
   const [post] = useActive(useContext(PostsContext));
@@ -16,13 +16,13 @@ const PostDetails = () => {
     <div className="p-3">
       {post ? (
         <PostCard {...post}>
-          <PostUserProvider id={post.userId} slug={`users/${post.userId}`}>
+          <UserProvider id={post.userId} slug={`users/${post.userId}`}>
             <PostUserConsumer
               userId={post.userId}
               loadingUserLabel="Author is loading..."
               noUserLabel="Author could not be found!"
             />
-          </PostUserProvider>
+          </UserProvider>
           <PostCommentsProvider postId={post.id}>
             <PostDetailsCommentsConsumer
               noCommentsLabel="There are no comments"

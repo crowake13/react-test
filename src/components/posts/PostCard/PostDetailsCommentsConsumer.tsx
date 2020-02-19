@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import * as RENDER_LOG from '../../constants/render-log';
-import PostCommentsContext from '../../stores/comments/post-comments.context';
-import withRenderLog from '../shared/withRenderLog';
-import { CommentList } from './CommentsList';
+import * as RENDER_LOG from '../../../constants/render-log';
+import PostCommentsContext from '../../../stores/comments/post-comments.context';
+import { CommentList } from '../../comments/CommentsList';
+import withRenderLog from '../../shared/withRenderLog';
 
 const PostDetailsCommentsConsumer = ({
   loadingCommentsLabel,

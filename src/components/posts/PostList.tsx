@@ -1,12 +1,12 @@
 import React from 'react';
 import * as RENDER_LOG from '../../constants/render-log';
 import { useChunkedPosts } from '../../hooks/posts/chunked-posts.hook';
-import PostCommentsConsumer from '../comments/PostCommentsConsumer';
 import PostCommentsProvider from '../comments/PostCommentsProvider';
 import withRenderLog from '../shared/withRenderLog';
-import PostUserConsumer from '../users/PostUserConsumer';
-import PostUserProvider from '../users/PostUserProvider';
+import UserProvider from '../users/UserProvider';
 import PostCard from './PostCard';
+import PostCommentsConsumer from './PostCard/PostCommentsConsumer';
+import PostUserConsumer from './PostCard/PostUserConsumer';
 
 const PostList = () => {
   const [posts, count, total, loadMore] = useChunkedPosts();
@@ -16,12 +16,12 @@ const PostList = () => {
       <div className="card-deck">
         {posts.map(post => (
           <PostCard key={post.id} {...post}>
-            <PostUserProvider id={post.userId} slug="users">
+            <UserProvider id={post.userId} slug="users">
               <PostUserConsumer
                 loadingUserLabel="Author is loading..."
                 noUserLabel="Author could not be found!"
               />
-            </PostUserProvider>
+            </UserProvider>
             <PostCommentsProvider postId={post.id}>
               <PostCommentsConsumer
                 noCommentsLabel="There are no comments"

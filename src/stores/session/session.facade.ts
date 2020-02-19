@@ -1,5 +1,5 @@
 import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged, map } from 'rxjs/operators';
+import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 
 export interface ICredentials {
   email: string;
@@ -26,8 +26,15 @@ export class SessionFacade implements ISessionFacade {
     return this._isAuthenticating$.getValue();
   }
 
-  private _accessToken$ = new BehaviorSubject<string | null>(null);
+  private _accessToken$ = new BehaviorSubject<string | null>(
+    localStorage.getItem('token')
+  );
   readonly isAuthenticated$ = this._accessToken$.asObservable().pipe(
+    tap(accessToken =>
+      accessToken
+        ? localStorage.setItem('token', accessToken)
+        : localStorage.removeItem('token')
+    ),
     map(accessToken => !!accessToken),
     distinctUntilChanged()
   );

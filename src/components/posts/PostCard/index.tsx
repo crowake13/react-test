@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as RENDER_LOG from '../../constants/render-log';
-import { Post } from '../../stores/posts/post.model';
-import withRenderLog from '../shared/withRenderLog';
+import * as RENDER_LOG from '../../../constants/render-log';
+import { Post } from '../../../stores/posts/post.model';
+import withRenderLog from '../../shared/withRenderLog';
 
 interface PostCardProps extends Post {
   children?: any;

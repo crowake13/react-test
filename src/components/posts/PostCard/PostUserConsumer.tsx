@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import * as RENDER_LOG from '../../constants/render-log';
-import PostUserContext from '../../stores/users/post-user.context';
-import { UsersContext } from '../../stores/users/users.context';
-import withRenderLog from '../shared/withRenderLog';
+import * as RENDER_LOG from '../../../constants/render-log';
+import PostUserContext from '../../../stores/users/post-user.context';
+import { UsersContext } from '../../../stores/users/users.context';
+import withRenderLog from '../../shared/withRenderLog';
 
 const PostUserConsumer = ({ userId, loadingUserLabel, noUserLabel }: any) => {
   const postUserContext = useContext(PostUserContext);

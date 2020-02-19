@@ -86,16 +86,6 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
     distinctUntilChanged()
   );
 
-  constructor(protected authHeader: { [key: string]: string } = {}) {
-    if (
-      process.env.REACT_APP_AUTH_HEADER &&
-      process.env.REACT_APP_ACCESS_TOKEN
-    ) {
-      authHeader[process.env.REACT_APP_AUTH_HEADER] =
-        process.env.REACT_APP_ACCESS_TOKEN;
-    }
-  }
-
   protected arrayFromMap(hashMap: Map<string, T>): T[] {
     return Array.from(hashMap).map(([key, item]) => item);
   }
@@ -157,12 +147,19 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
       this.startFetching(slug);
 
       try {
+        const authHeader: { [key: string]: string } = {};
+
+        if (process.env.REACT_APP_AUTH_HEADER) {
+          authHeader[process.env.REACT_APP_AUTH_HEADER] =
+            localStorage.getItem('token') ?? '';
+        }
+
         const response: T[] | T = await fetch(
           `${process.env.REACT_APP_API_URL}/${slug}`,
           {
             method: 'GET',
             headers: {
-              ...this.authHeader
+              ...authHeader
             }
           }
         ).then(response => {

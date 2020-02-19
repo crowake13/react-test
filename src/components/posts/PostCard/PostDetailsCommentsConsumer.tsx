@@ -21,7 +21,7 @@ const PostDetailsCommentsConsumer = ({
           <span>Comments ({comments.length})</span>
         )}
       </div>
-      {comments ? <CommentList comments={comments} /> : null}
+      {comments && comments.length ? <CommentList comments={comments} /> : null}
     </div>
   );
 };

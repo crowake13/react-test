@@ -4,10 +4,15 @@ import PostCommentsContext from '../../../stores/comments/post-comments.context'
 import { CommentList } from '../../comments/CommentsList';
 import withRenderLog from '../../shared/withRenderLog';
 
-const PostDetailsCommentsConsumer = ({
+interface PostDetailsCommentsProps {
+  loadingCommentsLabel: string;
+  noCommentsLabel: string;
+}
+
+const PostDetailsComments = ({
   loadingCommentsLabel,
   noCommentsLabel
-}: any) => {
+}: PostDetailsCommentsProps) => {
   const { comments } = useContext(PostCommentsContext);
 
   return (
@@ -27,5 +32,5 @@ const PostDetailsCommentsConsumer = ({
 };
 
 export default withRenderLog({ greeting: RENDER_LOG.GREETING })(
-  PostDetailsCommentsConsumer
+  PostDetailsComments
 );

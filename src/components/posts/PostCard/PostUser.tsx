@@ -1,10 +1,17 @@
 import React, { useContext, useEffect } from 'react';
 import * as RENDER_LOG from '../../../constants/render-log';
+import { ID } from '../../../stores/entities/entity.facade';
 import PostUserContext from '../../../stores/users/post-user.context';
 import { UsersContext } from '../../../stores/users/users.context';
 import withRenderLog from '../../shared/withRenderLog';
 
-const PostUserConsumer = ({ userId, loadingUserLabel, noUserLabel }: any) => {
+interface PostUserProps {
+  userId: ID;
+  loadingUserLabel: string;
+  noUserLabel: string;
+}
+
+const PostUser = ({ userId, loadingUserLabel, noUserLabel }: PostUserProps) => {
   const postUserContext = useContext(PostUserContext);
   const userService = useContext(UsersContext);
 
@@ -24,6 +31,4 @@ const PostUserConsumer = ({ userId, loadingUserLabel, noUserLabel }: any) => {
   );
 };
 
-export default withRenderLog({ greeting: RENDER_LOG.GREETING })(
-  PostUserConsumer
-);
+export default withRenderLog({ greeting: RENDER_LOG.GREETING })(PostUser);

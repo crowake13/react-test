@@ -6,8 +6,8 @@ import PostCommentsProvider from '../comments/PostCommentsProvider';
 import withRenderLog from '../shared/withRenderLog';
 import UserProvider from '../users/UserProvider';
 import PostCard from './PostCard';
-import PostDetailsCommentsConsumer from './PostCard/PostDetailsCommentsConsumer';
-import PostUserConsumer from './PostCard/PostUserConsumer';
+import PostDetailsComments from './PostCard/PostDetailsComments';
+import PostUser from './PostCard/PostUser';
 
 const PostDetails = () => {
   const [post] = useActive(useContext(PostsContext));
@@ -17,16 +17,16 @@ const PostDetails = () => {
       {post ? (
         <PostCard {...post}>
           <UserProvider id={post.userId} slug={`users/${post.userId}`}>
-            <PostUserConsumer
+            <PostUser
               userId={post.userId}
               loadingUserLabel="Author is loading..."
               noUserLabel="Author could not be found!"
             />
           </UserProvider>
           <PostCommentsProvider postId={post.id}>
-            <PostDetailsCommentsConsumer
-              noCommentsLabel="There are no comments"
+            <PostDetailsComments
               loadingCommentsLabel="Comments are loading..."
+              noCommentsLabel="There are no comments"
             />
           </PostCommentsProvider>
         </PostCard>

@@ -8,7 +8,7 @@ describe('<MyComponent />', () => {
   });
 
   const invalidCreds: ICredentials = {
-    email: 'nikola.vranesic@q.agency',
+    email: 'something@something.darkside',
     password: 'Pa55w0rd'
   };
 
@@ -25,7 +25,10 @@ describe('<MyComponent />', () => {
     expect(service.isCurrentlyAuthenticating).toEqual(false);
   });
 
-  const validCreds: ICredentials = { email: 'blabla', password: 'asdf' };
+  const validCreds: ICredentials = {
+    email: process.env.REACT_APP_VALID_EMAIL ?? 'martian@machine.com',
+    password: process.env.REACT_APP_VALID_PASSWORD ?? '1234'
+  };
 
   it('Should be authenticated after login attempt with valid creds', async () => {
     const service = new SessionFacade();

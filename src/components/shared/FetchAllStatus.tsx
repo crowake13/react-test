@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as RENDER_LOG from '../../constants/render-log';
 import { useFetchAll } from '../../hooks/fetch-all.hook';
 import withRenderLog from './withRenderLog';
 
-const FetchAllStatus = () => {
+const FetchAllStatus = ({ refreshOnInit }: { refreshOnInit: boolean }) => {
   const [isFetching, fetchAll] = useFetchAll();
+
+  useEffect(() => {
+    if (refreshOnInit) {
+      fetchAll();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>

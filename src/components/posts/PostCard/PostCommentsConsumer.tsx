@@ -69,7 +69,7 @@ const PostCommentsConsumer = ({
           </>
         )}
       </div>
-      {areCommentsVisible && comments ? (
+      {areCommentsVisible && comments && comments.length ? (
         <CommentList comments={comments} />
       ) : null}
     </div>

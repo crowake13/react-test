@@ -12,6 +12,11 @@ export type CommentsHookTuple = [Comment[], (postId: ID) => Comment[] | null];
 export const useComments = (): CommentsHookTuple => {
   const commentsService = useContext(CommentsContext);
 
+  const [isFetching] = useObservable(
+    commentsService.isFetching$,
+    commentsService.isFetching
+  );
+
   const [comments] = useObservable(commentsService.entitie$, []);
 
   const mapOfPostComments = new Map<string, Comment[]>();
@@ -25,5 +30,11 @@ export const useComments = (): CommentsHookTuple => {
     );
   });
 
-  return [comments, (postId: ID) => mapOfPostComments.get(`${postId}`) ?? null];
+  return [
+    comments,
+    (postId: ID) =>
+      isFetching['comments'] || isFetching[`posts/${postId}/comments`]
+        ? null
+        : mapOfPostComments.get(`${postId}`) ?? []
+  ];
 };

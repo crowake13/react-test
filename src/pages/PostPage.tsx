@@ -31,7 +31,14 @@ const PostPage = () => {
   }, [id, postsService]);
 
   useEffect(() => {
-    commentsService.fetch(`posts/${id}/comments`, false, 4500);
+    const fetchPostComments = async () => {
+      await ((ms: number) => new Promise(resolve => setTimeout(resolve, ms)))(
+        3000
+      );
+      commentsService.fetch(`posts/${id}/comments`, false, 1500);
+    };
+
+    fetchPostComments();
   }, [id, commentsService]);
 
   return <PostDetails />;

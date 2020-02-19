@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders PostDetailsComments manually 1`] = `"<div class=\\"bg-light border-top\\"><div class=\\"card-header\\">There are no comments</div></div>"`;
+
+exports[`renders PostDetailsComments manually 2`] = `"<div class=\\"bg-light border-top\\"><div class=\\"card-header\\">Comments are loading...</div></div>"`;
+
+exports[`renders PostDetailsComments manually 3`] = `"<div class=\\"bg-light border-top\\"><div class=\\"card-header\\"><span>Comments (2)</span></div><div class=\\"card-body m-0\\"><div class=\\"mb-2\\"><h6 class=\\"card-subtitle my-2 text-muted\\">email 1.1</h6><h5 class=\\"card-title\\">title 1.1</h5><p class=\\"card-text\\">body 1.1</p></div><div class=\\"border-top mb-2\\"><h6 class=\\"card-subtitle my-2 text-muted\\">email 1.2</h6><h5 class=\\"card-title\\">title 1.2</h5><p class=\\"card-text\\">body 1.2</p></div></div></div>"`;
+
+exports[`renders PostDetailsComments with fetch 1`] = `"<div class=\\"bg-light border-top\\"><div class=\\"card-header\\">There are no comments</div></div>"`;
+
+exports[`renders PostDetailsComments with fetch 2`] = `"<div class=\\"bg-light border-top\\"><div class=\\"card-header\\">Comments are loading...</div></div>"`;
+
+exports[`renders PostDetailsComments with fetch 3`] = `"<div class=\\"bg-light border-top\\"><div class=\\"card-header\\"><span>Comments (2)</span></div><div class=\\"card-body m-0\\"><div class=\\"mb-2\\"><h6 class=\\"card-subtitle my-2 text-muted\\">email 1.1</h6><h5 class=\\"card-title\\">title 1.1</h5><p class=\\"card-text\\">body 1.1</p></div><div class=\\"border-top mb-2\\"><h6 class=\\"card-subtitle my-2 text-muted\\">email 1.2</h6><h5 class=\\"card-title\\">title 1.2</h5><p class=\\"card-text\\">body 1.2</p></div></div></div>"`;

@@ -19,7 +19,7 @@ const PostComments = ({
 
   return (
     <div
-      className={`bg-light border-top ${
+      className={`post-comments-container bg-light border-top ${
         areCommentsVisible ? 'full-card-height' : ''
       }`}
     >

@@ -17,7 +17,7 @@ const App = () => {
         </Route>
 
         <PrivateRoute path={ROUTES.LANDING}>
-          <div id="body">
+          <div id="private-routes-container">
             <Switch>
               <Route path={ROUTES.APP}>
                 <PostsPage />

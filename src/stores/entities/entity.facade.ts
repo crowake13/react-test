@@ -35,14 +35,14 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
   );
   readonly entitie$ = this._entitie$
     .asObservable()
-    .pipe(distinctUntilChanged(), map(this.arraFromMap));
+    .pipe(distinctUntilChanged(), map(this.arrayFromMap));
 
   protected get hashMap() {
     return this._entitie$.getValue();
   }
 
   getAll() {
-    return this.arraFromMap(this.hashMap);
+    return this.arrayFromMap(this.hashMap);
   }
 
   getById(key: K): T | null {
@@ -56,6 +56,20 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
 
   get isFetching() {
     return this._isFetching$.getValue();
+  }
+
+  protected startFetching(slug: string) {
+    this._isFetching$.next({
+      ...this.isFetching,
+      [slug]: true
+    });
+  }
+
+  protected endFetching(slug: string) {
+    this._isFetching$.next({
+      ...this.isFetching,
+      [slug]: false
+    });
   }
 
   isFetchingBySlug(slug: string) {
@@ -81,7 +95,7 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
     }
   }
 
-  protected arraFromMap(hashMap: Map<string, T>): T[] {
+  protected arrayFromMap(hashMap: Map<string, T>): T[] {
     return Array.from(hashMap).map(([key, item]) => item);
   }
 
@@ -119,10 +133,7 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
 
   async fetch(slug: string, set: boolean = false, delay: number = 0) {
     if (!this.isFetchingBySlug(slug)) {
-      this._isFetching$.next({
-        ...this.isFetching,
-        [slug]: true
-      });
+      this.startFetching(slug);
 
       try {
         const response: T[] | T = await fetch(
@@ -155,10 +166,7 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
         });
         console.error(e);
       } finally {
-        this._isFetching$.next({
-          ...this.isFetching,
-          [slug]: false
-        });
+        this.endFetching(slug);
       }
     }
   }

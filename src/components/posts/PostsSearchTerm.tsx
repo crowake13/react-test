@@ -25,7 +25,7 @@ const PostsSearchTerm = () => {
           value={value}
           onChange={e => updateSearchTerm(e.target.value)}
         />
-        {inputRef.current && inputRef.current.value ? (
+        {!value ? null : (
           <div className="input-group-append">
             <button
               className="btn btn-outline-secondary"
@@ -35,7 +35,7 @@ const PostsSearchTerm = () => {
               X
             </button>
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );

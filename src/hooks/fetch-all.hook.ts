@@ -6,12 +6,12 @@ import { CommentsContext } from '../stores/comments/comments.context';
 import { PostsContext } from '../stores/posts/posts.context';
 import { UsersContext } from '../stores/users/users.context';
 
-export type FetchHookDuple = [boolean, () => void];
+export type FetchAllHookDuple = [boolean, () => void];
 
 /**
  * Custom Hook to manage a view Model for Post view components
  */
-export const useFetchAll = (): FetchHookDuple => {
+export const useFetchAll = (): FetchAllHookDuple => {
   const postsService = useContext(PostsContext);
   const usersService = useContext(UsersContext);
   const commentsService = useContext(CommentsContext);

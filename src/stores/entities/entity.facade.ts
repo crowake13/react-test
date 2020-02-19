@@ -1,5 +1,6 @@
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+import { Utils } from './utils';
 
 export type ID = string | number;
 
@@ -113,20 +114,40 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
     return hashMap;
   }
 
+  protected doesEntityExistAsIs(
+    entity: T,
+    hashMap = this._entitie$.getValue()
+  ) {
+    return Utils.areObjectsEqual(entity, hashMap.get(`${entity.id}`));
+  }
+
   protected add(input: T[] | T) {
+    const hashMap = this._entitie$.getValue();
+
     if (input instanceof Array) {
-      this._entitie$.next(this.mapFromArray(input, this._entitie$.getValue()));
-    } else {
-      this._entitie$.next(
-        this.mapFromArray([input], this._entitie$.getValue())
-      );
+      if (
+        input.filter(entity => !this.doesEntityExistAsIs(entity, hashMap))
+          .length
+      ) {
+        this._entitie$.next(this.mapFromArray(input, hashMap));
+      }
+    } else if (!this.doesEntityExistAsIs(input)) {
+      this._entitie$.next(this.mapFromArray([input], hashMap));
     }
   }
 
   protected set(input: T[] | T) {
+    const hashMap = this._entitie$.getValue();
+
     if (input instanceof Array) {
-      this._entitie$.next(this.mapFromArray(input));
-    } else {
+      if (
+        input.length !== hashMap.size ||
+        input.filter(entity => !this.doesEntityExistAsIs(entity, hashMap))
+          .length
+      ) {
+        this._entitie$.next(this.mapFromArray(input));
+      }
+    } else if (!this.doesEntityExistAsIs(input)) {
       this._entitie$.next(this.mapFromArray([input]));
     }
   }

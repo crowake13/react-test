@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { LoginFrom } from '../components/auth/LoginForm';
 import withRenderLog from '../components/shared/withRenderLog';
 import * as RENDER_LOG from '../constants/render-log';
 import * as ROUTES from '../constants/routes';
@@ -28,12 +29,7 @@ const LoginPage = ({ getDefaultFrom }: { [key: string]: any }) => {
 
   return (
     <div className="d-flex justify-content-center mt-5">
-      <button
-        className="btn btn-primary"
-        onClick={() => onSubmit({ email: 'blabla', password: 'asdf' })}
-      >
-        Login
-      </button>
+      <LoginFrom onSubmit={onSubmit} />
     </div>
   );
 };

@@ -33,8 +33,9 @@ export const useComments = (): CommentsHookTuple => {
   return [
     comments,
     (postId: ID) =>
-      isFetching['comments'] || isFetching[`posts/${postId}/comments`]
+      mapOfPostComments.get(`${postId}`) ??
+      (isFetching['comments'] || isFetching[`posts/${postId}/comments`]
         ? null
-        : mapOfPostComments.get(`${postId}`) ?? []
+        : [])
   ];
 };

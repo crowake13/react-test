@@ -5,8 +5,8 @@ import PostCommentsProvider from '../comments/PostCommentsProvider';
 import withRenderLog from '../shared/withRenderLog';
 import UserProvider from '../users/UserProvider';
 import PostCard from './PostCard';
-import PostCommentsConsumer from './PostCard/PostCommentsConsumer';
-import PostUserConsumer from './PostCard/PostUserConsumer';
+import PostComments from './PostCard/PostComments';
+import PostUser from './PostCard/PostUser';
 
 const PostList = () => {
   const [posts] = usePosts();
@@ -17,15 +17,15 @@ const PostList = () => {
         {posts.map(post => (
           <PostCard key={post.id} {...post}>
             <UserProvider id={post.userId} slug="users">
-              <PostUserConsumer
+              <PostUser
                 loadingUserLabel="Author is loading..."
                 noUserLabel="Author could not be found!"
               />
             </UserProvider>
             <PostCommentsProvider postId={post.id}>
-              <PostCommentsConsumer
-                noCommentsLabel="There are no comments"
+              <PostComments
                 loadingCommentsLabel="Comments are loading..."
+                noCommentsLabel="There are no comments"
               />
             </PostCommentsProvider>
           </PostCard>

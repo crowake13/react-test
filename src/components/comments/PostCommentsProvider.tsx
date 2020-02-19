@@ -2,10 +2,23 @@ import React, { useState } from 'react';
 import * as RENDER_LOG from '../../constants/render-log';
 import { useComments } from '../../hooks/comments/comments.hook';
 import PostCommentsContext from '../../stores/comments/post-comments.context';
+import { ID } from '../../stores/entities/entity.facade';
 import withRenderLog from '../shared/withRenderLog';
 
-const PostCommentsProvider = ({ postId, children }: any) => {
-  const [areCommentsVisible, toggleCommentsVisibility] = useState(false);
+interface PostCommentsProvider {
+  postId: ID;
+  areCommentsVisibleOnInit?: boolean;
+  children: any;
+}
+
+const PostCommentsProvider = ({
+  postId,
+  areCommentsVisibleOnInit,
+  children
+}: PostCommentsProvider) => {
+  const [areCommentsVisible, toggleCommentsVisibility] = useState(
+    areCommentsVisibleOnInit ?? false
+  );
 
   const [, getCommentsByPostId] = useComments();
 

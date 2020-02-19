@@ -9,7 +9,7 @@ const Header = () => {
   const [, isAuthenticated] = useAuth();
 
   return (
-    <header>
+    <header className="bg-light">
       {isAuthenticated ? (
         <div className="clearfix p-3 border-bottom">
           <Link className="float-left" to={ROUTES.APP}>

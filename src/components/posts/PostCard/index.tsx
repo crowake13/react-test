@@ -15,7 +15,7 @@ const PostCard = ({ id, title, body, children }: PostCardProps) => {
     <div className="card mb-3">
       <div className="card-body">
         {children[0]}
-        <h5 className="card-title">
+        <h5 className="card-title text-primary">
           {pathname !== `/post/${id}` ? (
             <Link to={`/post/${id}`}>{title}</Link>
           ) : (

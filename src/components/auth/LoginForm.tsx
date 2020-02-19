@@ -15,9 +15,7 @@ export const LoginFrom = ({ onSubmit }: ILoginFromProps) => {
     <form autoComplete="off" onSubmit={() => onSubmit({ email, password })}>
       <input type="password" name="password" style={{ display: 'none' }} />
       <div className="form-group">
-        <label className="text-white" htmlFor="exampleInputEmail1">
-          Email address
-        </label>
+        <label>Email address</label>
         <input
           type="email"
           autoComplete="off"
@@ -30,9 +28,7 @@ export const LoginFrom = ({ onSubmit }: ILoginFromProps) => {
         />
       </div>
       <div className="form-group">
-        <label className="text-white" htmlFor="exampleInputPassword1">
-          Password
-        </label>
+        <label>Password</label>
         <input
           type="password"
           autoComplete="off"

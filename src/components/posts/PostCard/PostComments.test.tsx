@@ -77,14 +77,14 @@ it('renders comments after clicking visibility toggle', () => {
   expect(container?.innerHTML).toMatchSnapshot();
 
   const button: HTMLButtonElement | null =
-    container?.querySelector('button.close.float-right') ?? null;
+    container?.querySelector('button.close') ?? null;
 
   act(() => {
     button?.click();
   });
   expect(
     container
-      ?.querySelector('.bg-light.border-top')
+      ?.querySelector('.post-comments-container')
       ?.classList.contains('full-card-height')
   ).toBe(true);
   expect(container?.innerHTML).toMatchSnapshot();

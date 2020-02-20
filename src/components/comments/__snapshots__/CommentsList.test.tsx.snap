@@ -2,6 +2,6 @@
 
 exports[`renders with or without a name 1`] = `"<div class=\\"card-body m-0\\"></div>"`;
 
-exports[`renders with or without a name 2`] = `"<div class=\\"card-body m-0\\"><div class=\\"mb-2\\"><h6 class=\\"card-subtitle my-2 text-muted\\">email 1.1</h6><h5 class=\\"card-title\\">title 1.1</h5><p class=\\"card-text\\">body 1.1</p></div></div>"`;
+exports[`renders with or without a name 2`] = `"<div class=\\"card-body m-0\\"><div class=\\"mb-2\\"><h6 title=\\"email 1.1\\" class=\\"card-subtitle my-2 text-muted\\">email 1.1</h6><h5 title=\\"title 1.1\\" class=\\"card-title\\">title 1.1</h5><p title=\\"body 1.1\\" class=\\"card-text\\">body 1.1</p></div></div>"`;
 
-exports[`renders with or without a name 3`] = `"<div class=\\"card-body m-0\\"><div class=\\"mb-2\\"><h6 class=\\"card-subtitle my-2 text-muted\\">email 1.1</h6><h5 class=\\"card-title\\">title 1.1</h5><p class=\\"card-text\\">body 1.1</p></div><div class=\\"border-top mb-2\\"><h6 class=\\"card-subtitle my-2 text-muted\\">email 1.2</h6><h5 class=\\"card-title\\">title 1.2</h5><p class=\\"card-text\\">body 1.2</p></div></div>"`;
+exports[`renders with or without a name 3`] = `"<div class=\\"card-body m-0\\"><div class=\\"mb-2\\"><h6 title=\\"email 1.1\\" class=\\"card-subtitle my-2 text-muted\\">email 1.1</h6><h5 title=\\"title 1.1\\" class=\\"card-title\\">title 1.1</h5><p title=\\"body 1.1\\" class=\\"card-text\\">body 1.1</p></div><div class=\\"mb-2 border-top\\"><h6 title=\\"email 1.2\\" class=\\"card-subtitle my-2 text-muted\\">email 1.2</h6><h5 title=\\"title 1.2\\" class=\\"card-title\\">title 1.2</h5><p title=\\"body 1.2\\" class=\\"card-text\\">body 1.2</p></div></div>"`;

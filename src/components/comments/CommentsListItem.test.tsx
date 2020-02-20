@@ -34,12 +34,12 @@ it('renders correctly', () => {
   };
 
   act(() => {
-    render(<CommentListItem {...comment} />, container);
+    render(<CommentListItem {...comment} hideTopBoarder={true} />, container);
   });
   expect(container?.innerHTML).toMatchSnapshot();
 
   act(() => {
-    render(<CommentListItem {...comment} showTopBoarder={true} />, container);
+    render(<CommentListItem {...comment} />, container);
   });
   expect(container?.innerHTML).toMatchSnapshot();
 });

@@ -18,11 +18,13 @@ const UserProvider = ({
   const usersService = useContext(UsersContext);
   const [isFetching] = useFetch(usersService, slug);
 
+  const user = usersService.getById(id);
+
   return (
     <Provider
       value={{
-        user: usersService.getById(id),
-        isFetching: isFetching
+        user,
+        isFetching
       }}
     >
       {children}

@@ -27,7 +27,7 @@ const PostUser = ({ userId, loadingUserLabel, noUserLabel }: PostUserProps) => {
       className="card-subtitle mb-2 text-muted line-clamp-1"
     >
       {postUserContext.user?.name ??
-        (postUserContext.isFetching ? loadingUserLabel : noUserLabel)}{' '}
+        (postUserContext.isFetching ? loadingUserLabel : noUserLabel)}
     </h6>
   );
 };

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as RENDER_LOG from '../../constants/render-log';
 import { useChunkedPosts } from '../../hooks/posts/chunked-posts.hook';
+import { Post } from '../../stores/posts/post.model';
 import PostCommentsProvider from '../comments/PostCommentsProvider';
 import withRenderLog from '../shared/withRenderLog';
 import UserProvider from '../users/UserProvider';
@@ -9,7 +10,16 @@ import PostComments from './PostCard/PostComments';
 import PostUser from './PostCard/PostUser';
 
 const PostList = () => {
-  const [posts, count, total, loadMore] = useChunkedPosts();
+  const [chunkedPosts] = useChunkedPosts();
+  const [count, setCount] = useState<number>(1);
+
+  let posts: Post[] = [];
+
+  for (let i = 0; i < count; i++) {
+    if (chunkedPosts[i]) {
+      posts = [...posts, ...chunkedPosts[i]];
+    }
+  }
 
   return (
     <div className="px-3">
@@ -32,8 +42,11 @@ const PostList = () => {
         ))}
       </div>
       <div className="d-flex justify-content-center">
-        {count < total ? (
-          <button className="btn btn-primary" onClick={loadMore}>
+        {count < chunkedPosts.length ? (
+          <button
+            className="btn btn-primary"
+            onClick={() => setCount(count + 1)}
+          >
             LOAD MORE
           </button>
         ) : null}

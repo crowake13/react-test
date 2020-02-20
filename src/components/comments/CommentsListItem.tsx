@@ -4,7 +4,7 @@ import { Comment } from '../../stores/comments/comment.model';
 import withRenderLog from '../shared/withRenderLog';
 
 interface CommentListProps extends Comment {
-  hideTopBoarder: boolean;
+  hideTopBoarder?: boolean;
 }
 
 export const CommentListItem = ({

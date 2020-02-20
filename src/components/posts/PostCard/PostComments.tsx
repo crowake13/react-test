@@ -30,7 +30,7 @@ const PostComments = ({
       }`}
     >
       <div className="card-header">
-        <div title={headerTitle} className="card-header-title">
+        <div title={headerTitle} className="card-header-title line-clamp-1">
           {headerTitle}
         </div>
         {!comments || !comments.length ? null : (

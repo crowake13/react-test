@@ -15,14 +15,14 @@ const PostCard = ({ id, title, body, children }: PostCardProps) => {
     <div className="card mb-3">
       <div className="card-body">
         {children[0]}
-        <h5 title={title} className="card-title text-primary">
+        <h5 title={title} className="card-title text-primary line-clamp-3">
           {pathname !== `/post/${id}` ? (
             <Link to={`/post/${id}`}>{title}</Link>
           ) : (
             <span>{title}</span>
           )}
         </h5>
-        <p title={body} className="card-text">
+        <p title={body} className="card-text line-clamp-6">
           {body}
         </p>
       </div>

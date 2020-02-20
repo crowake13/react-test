@@ -15,7 +15,7 @@ export const CommentList = ({ comments }: CommentListProps) => {
         <CommentListItem
           key={comment.id}
           {...comment}
-          showTopBoarder={!index}
+          hideTopBoarder={!index}
         />
       ))}
     </div>

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders PostUser manually 1`] = `"<h6 title=\\"Leanne Graham\\" class=\\"card-subtitle mb-2 text-muted\\">Leanne Graham</h6>"`;
+
+exports[`renders PostUser manually 2`] = `"<h6 title=\\"Leanne Graham\\" class=\\"card-subtitle mb-2 text-muted\\">Leanne Graham</h6>"`;
+
+exports[`renders PostUser manually 3`] = `"<h6 title=\\"Leanne Graham\\" class=\\"card-subtitle mb-2 text-muted\\">Leanne Graham</h6>"`;
+
+exports[`renders PostUser with fetch 1`] = `"<h6 class=\\"card-subtitle mb-2 text-muted\\">Author could not be found!</h6>"`;
+
+exports[`renders PostUser with fetch 2`] = `"<h6 class=\\"card-subtitle mb-2 text-muted\\">Author is loading...</h6>"`;
+
+exports[`renders PostUser with fetch 3`] = `"<h6 class=\\"card-subtitle mb-2 text-muted\\">Author could not be found!</h6>"`;

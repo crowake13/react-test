@@ -139,7 +139,7 @@ it('renders PostUser with fetch', async () => {
     facade.isFetching$
       .pipe(
         map(isFetching => isFetching[`users`]),
-        filter(isFetching => isFetching)
+        filter(isFetchingUsers => isFetchingUsers)
       )
       .toPromise();
   });
@@ -150,7 +150,7 @@ it('renders PostUser with fetch', async () => {
     facade.isFetching$
       .pipe(
         map(isFetching => isFetching[`users`]),
-        filter(isFetching => !isFetching)
+        filter(isFetchingUsers => !isFetchingUsers)
       )
       .toPromise();
   });

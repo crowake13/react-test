@@ -123,7 +123,7 @@ it('renders PostDetailsComments with fetch', async () => {
     facade.isFetching$
       .pipe(
         map(isFetching => isFetching[`posts/${postId}/comments`]),
-        filter(isFetching => isFetching)
+        filter(isFetchingComments => isFetchingComments)
       )
       .toPromise();
   });
@@ -134,7 +134,7 @@ it('renders PostDetailsComments with fetch', async () => {
     facade.isFetching$
       .pipe(
         map(isFetching => isFetching[`posts/${postId}/comments`]),
-        filter(isFetching => !isFetching)
+        filter(isFetchingComments => !isFetchingComments)
       )
       .toPromise();
   });

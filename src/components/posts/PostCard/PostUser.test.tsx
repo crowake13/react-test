@@ -1,12 +1,10 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { Subject } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { ID } from '../../../stores/entities/entity.facade';
 import { User } from '../../../stores/users/user.model';
-import { facade } from '../../../stores/users/users.facade';
-import UserProvider from '../../users/UserProvider';
+import PostUserProvider from '../../users/PostUserProvider';
 import UsersFacadeProvider from '../../users/UsersFacadeProvider';
 import PostUser from './PostUser';
 
@@ -56,7 +54,7 @@ const users: User[] = [
 ];
 
 it('renders PostUser manually', () => {
-  const _entitie$ = new Subject<User[]>();
+  const _entitie$ = new BehaviorSubject<User[]>([]);
   const entitie$ = _entitie$.asObservable();
 
   const _isFetching$ = new Subject<{ [key: string]: boolean }>();
@@ -69,7 +67,7 @@ it('renders PostUser manually', () => {
   };
 
   const getById = (id: ID) => {
-    return users[0].id === id ? users[0] : null;
+    return _entitie$.getValue().filter(entity => entity.id === id)[0] ?? null;
   };
 
   act(() => {
@@ -79,12 +77,12 @@ it('renders PostUser manually', () => {
         isFetching$={isFetching$}
         getById={getById}
       >
-        <UserProvider id={users[0].id} slug="users">
+        <PostUserProvider id={users[0].id} slug="users">
           <PostUser
             loadingUserLabel="Author is loading..."
             noUserLabel="Author could not be found!"
           />
-        </UserProvider>
+        </PostUserProvider>
       </UsersFacadeProvider>,
       container
     );
@@ -104,59 +102,4 @@ it('renders PostUser manually', () => {
   });
 
   expect(container?.innerHTML).toMatchSnapshot();
-});
-
-it('renders PostUser with fetch', async () => {
-  jest.spyOn(global, 'fetch' as any).mockImplementation(() =>
-    Promise.resolve({
-      json: () => {
-        return Promise.resolve(users);
-      }
-    })
-  );
-
-  // Use the asynchronous version of act to apply resolved promises
-  act(() => {
-    render(
-      <UsersFacadeProvider {...facade}>
-        <UserProvider id={users[0].id} slug="users">
-          <PostUser
-            loadingUserLabel="Author is loading..."
-            noUserLabel="Author could not be found!"
-          />
-        </UserProvider>
-      </UsersFacadeProvider>,
-      container
-    );
-  });
-  expect(container?.innerHTML).toMatchSnapshot();
-
-  act(() => {
-    facade.fetch(`users`);
-  });
-
-  await act(async () => {
-    facade.isFetching$
-      .pipe(
-        map(isFetching => isFetching[`users`]),
-        filter(isFetchingUsers => isFetchingUsers)
-      )
-      .toPromise();
-  });
-
-  expect(container?.innerHTML).toMatchSnapshot();
-
-  await act(async () => {
-    facade.isFetching$
-      .pipe(
-        map(isFetching => isFetching[`users`]),
-        filter(isFetchingUsers => !isFetchingUsers)
-      )
-      .toPromise();
-  });
-
-  expect(container?.innerHTML).toMatchSnapshot();
-
-  // remove the mock to ensure tests are completely isolated
-  (global as any).fetch.mockRestore();
 });

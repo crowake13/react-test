@@ -4,7 +4,7 @@ import { useChunkedPosts } from '../../hooks/posts/chunked-posts.hook';
 import { Post } from '../../stores/posts/post.model';
 import PostCommentsProvider from '../comments/PostCommentsProvider';
 import withRenderLog from '../shared/withRenderLog';
-import UserProvider from '../users/UserProvider';
+import PostUserProvider from '../users/PostUserProvider';
 import PostCard from './PostCard';
 import PostComments from './PostCard/PostComments';
 import PostUser from './PostCard/PostUser';
@@ -26,12 +26,12 @@ const PostList = () => {
       <div className="card-deck justify-content-between">
         {posts.map(post => (
           <PostCard key={post.id} {...post}>
-            <UserProvider id={post.userId} slug="users">
+            <PostUserProvider id={post.userId} slug="users">
               <PostUser
                 loadingUserLabel="Author is loading..."
                 noUserLabel="Author could not be found!"
               />
-            </UserProvider>
+            </PostUserProvider>
             <PostCommentsProvider postId={post.id}>
               <PostComments
                 loadingCommentsLabel="Comments are loading..."

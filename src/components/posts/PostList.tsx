@@ -23,7 +23,7 @@ const PostList = () => {
 
   return (
     <div className="px-3">
-      <div className="card-deck">
+      <div className="card-deck justify-content-between">
         {posts.map(post => (
           <PostCard key={post.id} {...post}>
             <UserProvider id={post.userId} slug="users">
@@ -40,6 +40,7 @@ const PostList = () => {
             </PostCommentsProvider>
           </PostCard>
         ))}
+        <div className="card mb-3 invisible"></div>
       </div>
       <div className="d-flex justify-content-center">
         {count < chunkedPosts.length ? (

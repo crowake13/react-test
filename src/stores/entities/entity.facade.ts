@@ -15,6 +15,7 @@ export interface IEntityFacade<T extends IEntity<K>, K extends any = ID> {
   activate(id: K): void;
   getAll(): T[];
   getById(key: K): T | null;
+  hashMap: Map<K, T>;
   entitie$: Observable<T[]>;
   isFetchingBySlug(slug: string): boolean;
   isFetching: { [key: string]: boolean };
@@ -38,7 +39,7 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
     .asObservable()
     .pipe(distinctUntilChanged(), map(this.arrayFromMap));
 
-  protected get hashMap() {
+  get hashMap() {
     return this._entitie$.getValue();
   }
 

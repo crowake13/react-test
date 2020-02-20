@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `"<div class=\\"mb-2\\"><h6 title=\\"email 1.1\\" class=\\"card-subtitle my-2 text-muted\\">email 1.1</h6><h5 title=\\"title 1.1\\" class=\\"card-title\\">title 1.1</h5><p title=\\"body 1.1\\" class=\\"card-text\\">body 1.1</p></div>"`;
+
+exports[`renders correctly 2`] = `"<div class=\\"mb-2 border-top\\"><h6 title=\\"email 1.1\\" class=\\"card-subtitle my-2 text-muted\\">email 1.1</h6><h5 title=\\"title 1.1\\" class=\\"card-title\\">title 1.1</h5><p title=\\"body 1.1\\" class=\\"card-text\\">body 1.1</p></div>"`;

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ICredentials } from '../../stores/session/session.facade';
+import { ICredentials } from '../../hooks/auth.hook';
 
 export interface ILoginFromProps {
   onSubmit(creds: ICredentials): void;

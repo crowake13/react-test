@@ -22,11 +22,12 @@ const PostUser = ({ userId, loadingUserLabel, noUserLabel }: PostUserProps) => {
   }, [postUserContext, userId, userService]);
 
   return !postUserContext ? null : (
-    <h6 className="card-subtitle mb-2 text-muted">
+    <h6
+      title={postUserContext.user?.name}
+      className="card-subtitle mb-2 text-muted"
+    >
       {postUserContext.user?.name ??
-        (postUserContext.isFetching
-          ? loadingUserLabel
-          : postUserContext.user?.name ?? noUserLabel)}
+        (postUserContext.isFetching ? loadingUserLabel : noUserLabel)}{' '}
     </h6>
   );
 };

@@ -69,6 +69,18 @@ header {
       top: 67px;
     }
 
+    .card-header {
+      .card-header-title {
+        margin-right: 24px;
+      }
+
+      .close {
+        top: 10px;
+        right: 20px;
+        position: absolute;
+      }
+    }
+
     .card-body {
       overflow-y: auto;
       position: relative;

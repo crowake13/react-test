@@ -10,11 +10,17 @@ interface CommentListProps {
 export const CommentList = ({ comments }: CommentListProps) => {
   return (
     <div className="card-body m-0">
-      {comments.map((comment, index) => (
-        <div key={comment.id} className={!index ? 'mb-2' : 'border-top mb-2'}>
-          <h6 className="card-subtitle my-2 text-muted">{comment.email}</h6>
-          <h5 className="card-title">{comment.name}</h5>
-          <p className="card-text">{comment.body}</p>
+      {comments.map(({ id, email, name, body }, index) => (
+        <div key={id} className={'mb-2' + (!index ? '' : ' border-top')}>
+          <h6 title={email} className="card-subtitle my-2 text-muted">
+            {email}
+          </h6>
+          <h5 title={name} className="card-title">
+            {name}
+          </h5>
+          <p title={body} className="card-text">
+            {body}
+          </p>
         </div>
       ))}
     </div>

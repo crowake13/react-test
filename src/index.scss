@@ -53,26 +53,46 @@ header {
 }
 
 .card-deck {
-  .card-body {
-    margin-bottom: 50px;
-  }
+  .card {
+    flex: 0;
 
-  .post-comments-container {
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 66px);
-    top: calc(100% - 49px);
-    -webkit-transition: top 0.3s ease;
-    transition: top 0.3s ease;
-
-    &.full-card-height {
-      top: 67px;
+    &.invisible {
+      border: 0;
     }
 
     .card-body {
-      overflow-y: auto;
-      position: relative;
-      height: calc(100% - 50px);
+      margin-bottom: 50px;
+    }
+
+    .post-comments-container {
+      position: absolute;
+      width: 100%;
+      height: calc(100% - 66px);
+      top: calc(100% - 49px);
+      -webkit-transition: top 0.3s ease;
+      transition: top 0.3s ease;
+
+      &.full-card-height {
+        top: 67px;
+      }
+
+      .card-header {
+        .card-header-title {
+          margin-right: 24px;
+        }
+
+        .close {
+          top: 10px;
+          right: 20px;
+          position: absolute;
+        }
+      }
+
+      .card-body {
+        overflow-y: auto;
+        position: relative;
+        height: calc(100% - 50px);
+      }
     }
   }
 }

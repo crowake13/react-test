@@ -2,9 +2,7 @@ import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { Subject } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
 import { Comment } from '../../../stores/comments/comment.model';
-import { facade } from '../../../stores/comments/comments.facade';
 import CommentsFacadeProvider from '../../comments/CommentsFacadeProvider';
 import PostCommentsProvider from '../../comments/PostCommentsProvider';
 import PostDetailsComments from './PostDetailsComments';
@@ -88,59 +86,4 @@ it('renders PostDetailsComments manually', () => {
   });
 
   expect(container?.innerHTML).toMatchSnapshot();
-});
-
-it('renders PostDetailsComments with fetch', async () => {
-  jest.spyOn(global, 'fetch' as any).mockImplementation(() =>
-    Promise.resolve({
-      json: () => {
-        return Promise.resolve(comments);
-      }
-    })
-  );
-
-  // Use the asynchronous version of act to apply resolved promises
-  act(() => {
-    render(
-      <CommentsFacadeProvider {...facade}>
-        <PostCommentsProvider postId={postId}>
-          <PostDetailsComments
-            loadingCommentsLabel="Comments are loading..."
-            noCommentsLabel="There are no comments"
-          />
-        </PostCommentsProvider>
-      </CommentsFacadeProvider>,
-      container
-    );
-  });
-  expect(container?.innerHTML).toMatchSnapshot();
-
-  act(() => {
-    facade.fetch(`posts/${postId}/comments`);
-  });
-
-  await act(async () => {
-    facade.isFetching$
-      .pipe(
-        map(isFetching => isFetching[`posts/${postId}/comments`]),
-        filter(isFetching => isFetching)
-      )
-      .toPromise();
-  });
-
-  expect(container?.innerHTML).toMatchSnapshot();
-
-  await act(async () => {
-    facade.isFetching$
-      .pipe(
-        map(isFetching => isFetching[`posts/${postId}/comments`]),
-        filter(isFetching => !isFetching)
-      )
-      .toPromise();
-  });
-
-  expect(container?.innerHTML).toMatchSnapshot();
-
-  // remove the mock to ensure tests are completely isolated
-  (global as any).fetch.mockRestore();
 });

@@ -12,21 +12,24 @@ interface PostUserProps {
 }
 
 const PostUser = ({ userId, loadingUserLabel, noUserLabel }: PostUserProps) => {
-  const postUserContext = useContext(PostUserContext);
+  const { user, isFetching } = useContext(PostUserContext);
   const userService = useContext(UsersContext);
 
   useEffect(() => {
-    if (userId && !postUserContext?.user) {
+    if (userId && !user) {
       userService.fetchById(userId);
     }
-  }, [postUserContext, userId, userService]);
+  }, [user, userId, userService]);
 
-  return !postUserContext ? null : (
-    <h6 className="card-subtitle mb-2 text-muted">
-      {postUserContext.user?.name ??
-        (postUserContext.isFetching
-          ? loadingUserLabel
-          : postUserContext.user?.name ?? noUserLabel)}
+  const label = !user
+    ? isFetching
+      ? loadingUserLabel
+      : noUserLabel
+    : user.name;
+
+  return (
+    <h6 title={label} className="card-subtitle mb-2 text-muted">
+      {label}
     </h6>
   );
 };

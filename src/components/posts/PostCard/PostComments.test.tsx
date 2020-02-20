@@ -26,7 +26,7 @@ afterEach(() => {
 });
 
 const postId = 1;
-const entitie$ = of([
+const comments = [
   {
     postId,
     id: 1,
@@ -41,12 +41,12 @@ const entitie$ = of([
     email: 'email 1.2',
     body: 'body 1.2'
   }
-]);
+];
 
 it('renders comments on init', () => {
   act(() => {
     render(
-      <CommentsFacadeProvider entitie$={entitie$}>
+      <CommentsFacadeProvider entitie$={of(comments)}>
         <PostCommentsProvider postId={postId} areCommentsVisibleOnInit={true}>
           <PostComments
             loadingCommentsLabel="Comments are loading..."
@@ -63,7 +63,7 @@ it('renders comments on init', () => {
 it('renders comments after clicking visibility toggle', () => {
   act(() => {
     render(
-      <CommentsFacadeProvider entitie$={entitie$}>
+      <CommentsFacadeProvider entitie$={of(comments)}>
         <PostCommentsProvider postId={postId}>
           <PostComments
             loadingCommentsLabel="Comments are loading..."

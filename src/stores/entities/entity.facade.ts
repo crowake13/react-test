@@ -15,7 +15,7 @@ export interface IEntityFacade<T extends IEntity<K>, K extends any = ID> {
   activate(id: K): void;
   getAll(): T[];
   getById(key: K): T | null;
-  hashMap: Map<K, T>;
+  hashMap: Map<string, T>;
   entitie$: Observable<T[]>;
   isFetchingBySlug(slug: string): boolean;
   isFetching: { [key: string]: boolean };
@@ -128,7 +128,7 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
   }
 
   protected set(input: T[] | T) {
-    const hashMap = this._entitie$.getValue();
+    const hashMap = this.hashMap;
 
     if (input instanceof Array) {
       if (
@@ -167,7 +167,10 @@ export abstract class EntityFacade<T extends IEntity<K>, K extends any = ID>
           return response.json();
         });
 
-        if (process.env.NODE_ENV !== 'production') {
+        if (
+          process.env.NODE_ENV !== 'production' &&
+          process.env.NODE_ENV !== 'test'
+        ) {
           await ((ms: number) =>
             new Promise(resolve => setTimeout(resolve, ms)))(delay);
         }

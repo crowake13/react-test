@@ -1,11 +1,9 @@
 import { createContext } from 'react';
 import { User } from './user.model';
 
-const context = createContext<{
+const PostUserContext = createContext<{
   user: User | null;
   isFetching: boolean;
-} | null>(null);
+}>({ user: null, isFetching: false });
 
-export const { Provider, Consumer } = context;
-
-export default context;
+export default PostUserContext;

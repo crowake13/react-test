@@ -4,7 +4,7 @@ import { useActive } from '../../hooks/active.hook';
 import { PostsContext } from '../../stores/posts/posts.context';
 import PostCommentsProvider from '../comments/PostCommentsProvider';
 import withRenderLog from '../shared/withRenderLog';
-import UserProvider from '../users/UserProvider';
+import PostUserProvider from '../users/PostUserProvider';
 import PostCard from './PostCard';
 import PostDetailsComments from './PostCard/PostDetailsComments';
 import PostUser from './PostCard/PostUser';
@@ -16,13 +16,13 @@ const PostDetails = () => {
     <div className="p-3">
       {post ? (
         <PostCard {...post}>
-          <UserProvider id={post.userId} slug={`users/${post.userId}`}>
+          <PostUserProvider id={post.userId} slug={`users/${post.userId}`}>
             <PostUser
               userId={post.userId}
               loadingUserLabel="Author is loading..."
               noUserLabel="Author could not be found!"
             />
-          </UserProvider>
+          </PostUserProvider>
           <PostCommentsProvider postId={post.id}>
             <PostDetailsComments
               loadingCommentsLabel="Comments are loading..."

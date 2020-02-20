@@ -21,6 +21,7 @@ const CommentsFacadeProvider = ({
         activate: props.activate ?? facade.activate,
         getAll: props.getAll ?? facade.getAll,
         getById: props.getById ?? facade.getById,
+        hashMap: props.hashMap ?? facade.hashMap,
         entitie$: props.entitie$ ?? facade.entitie$,
         isFetchingBySlug: props.isFetchingBySlug ?? facade.isFetchingBySlug,
         isFetching: props.isFetching ?? facade.isFetching,
